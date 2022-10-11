@@ -2,10 +2,7 @@ const productService = require('../services/product.service');
 const { statusHttpError } = require('../utils/status.http.error');
 
 const getAllProducts = async (_req, res) => {
-  const { status, message } = await productService.getAllProducts();
-  if (status) {
-    return res.status(statusHttpError(status)).json({ message });
-  }
+  const { message } = await productService.getAllProducts();
   return res.status(200).json(message);
 };
 
