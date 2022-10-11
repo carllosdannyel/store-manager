@@ -4,7 +4,7 @@ const sinon = require("sinon");
 const { connection } = require("../../../src/models/db/connection");
 const productModel = require("../../../src/models/product.model");
 
-const { productsFromDB } = require("./mocks/products.model.mock");
+const { productsFromDB } = require("./mocks/product.model.mock");
 
 describe("Testes na camada Model", function () {
   describe("Testes de unidade do model de products", function () {
