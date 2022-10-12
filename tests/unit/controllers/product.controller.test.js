@@ -64,4 +64,45 @@ describe("Testes de unidade na camada Controller", function () {
 
     beforeEach(sinon.restore);
   });
+
+  describe("Testes na inserção de produtos", function () {
+    it("Verifica se insere um produto com sucesso", async function () {
+      const req = { body: { name: "Pc Gamer" } };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon
+        .stub(productService, "createProduct")
+        .resolves({ id: 42, name: "Pc Gamer" });
+
+      await productController.createProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(201);
+      expect(res.json).to.have.been.calledWith({
+        id: 42,
+        name: "Pc Gamer",
+      });
+    });
+
+    it("Testa a validação do campo name vazio", async function () {
+      const req = { body: { name: '' } };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon
+        .stub(productService, "createProduct")
+        .resolves({ type: 'BAD_REQUEST', message: '"name" is required' });
+
+      await productController.createProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(400);
+      expect(res.json).to.have.been.calledWith({
+        message: '"name" is required',
+      });
+    });
+
+    beforeEach(sinon.restore);
+  });
 });

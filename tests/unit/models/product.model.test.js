@@ -37,5 +37,16 @@ describe("Testes de unidade na camada Model", function () {
     afterEach(sinon.restore);
   });
 
-  describe('')
+  describe('Testes na inserção de produtos', function () {
+    it('Verifica se insere um produto com sucesso', async function () {
+      sinon.stub(connection, "execute").resolves([{ insertId: 42 }]);
+
+      const productName = 'Pc Gamer'
+      const result = await productModel.createProduct(productName)
+
+      expect(result).to.be.equal(42)
+    })
+
+    afterEach(sinon.restore)
+  })
 });

@@ -16,7 +16,6 @@ const getProductById = async (id) => {
 
 const createProduct = async (name) => {
   const validation = nameValidate(name);
-  console.log(validation);
   if (validation.type) {
     return validation;
   }
