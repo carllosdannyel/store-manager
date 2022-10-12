@@ -26,5 +26,35 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "f5c4f959-a9fa-4c55-9e5b-35c42fc911f3",
+    "colId": "c89cf2bb-d735-4aa2-80cc-696e287d9a7d",
+    "containerId": "",
+    "name": "/products - adiciona um novo produto",
+    "url": "http://localhost:3333/products",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-10-11T23:58:20.329Z",
+    "modified": "2022-10-12T00:19:30.293Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"computador gamer\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

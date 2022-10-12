@@ -36,6 +36,7 @@ describe("Testes na camada Service", function () {
       expect(result.status).to.equal("NOT_FOUND");
       expect(result.message).to.equal("Product not found");
     });
+    
     afterEach(sinon.restore);
   });
 });
