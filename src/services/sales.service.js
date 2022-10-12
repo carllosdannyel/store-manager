@@ -1,10 +1,10 @@
 const salesModel = require('../models/sales.model');
 
-const createSales = async (sales) => {
-  const sale = await salesModel.createSales(sales);
-  return sale;
+const getAllSales = async () => {
+  const sales = await salesModel.getAllSales();
+  return sales;
 };
 
 module.exports = {
-  createSales,
+  getAllSales,
 };
