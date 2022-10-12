@@ -56,5 +56,35 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "23764329-7672-401b-b9c6-095f83f64285",
+    "colId": "c89cf2bb-d735-4aa2-80cc-696e287d9a7d",
+    "containerId": "",
+    "name": "/sales - adiciona novas vendas",
+    "url": "http://localhost:3333/sales",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-10-12T03:55:34.908Z",
+    "modified": "2022-10-12T05:27:55.600Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 5\n  }\n]",
+      "form": []
+    },
+    "tests": []
   }
 ]
