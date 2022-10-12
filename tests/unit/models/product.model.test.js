@@ -6,8 +6,8 @@ const productModel = require("../../../src/models/product.model");
 
 const { productsFromDB } = require("./mocks/product.model.mock");
 
-describe("Testes na camada Model", function () {
-  describe("Testes de unidade do model de products", function () {
+describe("Testes de unidade na camada Model", function () {
+  describe("Testes de buscar de produtos", function () {
     it("Busca de todos os produtos", async function () {
       sinon.stub(connection, "execute").resolves([productsFromDB]);
 
@@ -36,4 +36,6 @@ describe("Testes na camada Model", function () {
 
     afterEach(sinon.restore);
   });
+
+  describe('')
 });

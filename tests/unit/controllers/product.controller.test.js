@@ -10,8 +10,8 @@ const productService = require("../../../src/services/product.service");
 const productController = require("../../../src/controllers/product.controller");
 const { productsFromDB } = require("./mocks/product.controller.mock");
 
-describe("Testes na camada Controller", function () {
-  describe("Testes de unidade do controller de products", function () {
+describe("Testes de unidade na camada Controller", function () {
+  describe("Testes de busca de produtos", function () {
     it("Busca de todos os produtos", async function () {
       const req = {};
       const res = {};

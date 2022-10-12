@@ -6,8 +6,8 @@ const productService = require("../../../src/services/product.service");
 
 const { productsFromDB } = require("./mocks/product.service.mock");
 
-describe("Testes na camada Service", function () {
-  describe("Testes de unidade do service de products", function () {
+describe("Testes de unidade na camada Service", function () {
+  describe("Testes de busca de produtos", function () {
     it("Busca de todos os produtos", async function () {
       sinon.stub(productModel, "getAllProducts").resolves(productsFromDB);
 
