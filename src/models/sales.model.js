@@ -14,6 +14,19 @@ const getAllSales = async () => {
   return camelize(result);
 };
 
+const getSalesById = async (id) => {
+  const [result] = await connection.execute(
+    `SELECT s.date, sp.product_id, sp.quantity
+    FROM sales_products as sp
+    INNER JOIN sales as s
+    ON sp.sale_id = s.id
+    WHERE s.id = ?;`, [id],
+  );
+
+  return camelize(result);
+};
+
 module.exports = {
   getAllSales,
+  getSalesById,
 };

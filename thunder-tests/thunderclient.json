@@ -111,5 +111,30 @@
     ],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "25be45d7-abfc-4d36-bdcc-362de70336aa",
+    "colId": "c89cf2bb-d735-4aa2-80cc-696e287d9a7d",
+    "containerId": "",
+    "name": "/sales - busca as vendas pelo id",
+    "url": "http://localhost:3333/sales/3",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-10-12T06:45:18.731Z",
+    "modified": "2022-10-12T06:46:46.897Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "tests": []
   }
 ]
