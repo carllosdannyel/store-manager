@@ -27,7 +27,7 @@ describe("Testes de unidade na camada Service", function () {
     });
 
     it("retorna NOT_FOUND caso não encontre as vendas", async function () {
-      sinon.stub(salesModel, "getSalesById").resolves(undefined);
+      sinon.stub(salesModel, "getSalesById").resolves([]);
 
       const id = 999;
       const result = await salesService.getSalesById(id);
