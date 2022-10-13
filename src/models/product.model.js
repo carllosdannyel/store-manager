@@ -19,11 +19,10 @@ const createProduct = async (name) => {
 
 const updateProduct = async (id, name) => {
   const [[exist]] = await connection.execute('SELECT * FROM products WHERE id = ?', [id]);
-  if (!exist) return undefined;
+  if (!exist) return exist;
 
   await connection.execute('UPDATE products SET name = ?', [name]);
-  const [[result]] = await connection.execute('SELECT * FROM products WHERE id = ?', [id]);
-  return result;
+  return { id, name };
 };
 
 module.exports = {

@@ -25,10 +25,12 @@ const createProduct = async (name) => {
 };
 
 const updateProduct = async (id, name) => {
+  const validation = nameValidate(name);
+  if (validation.type) return validation;
+
   const product = await productModel.updateProduct(id, name);
-  if (!product) {
-    return { status: 'NOT_FOUND', message: 'Product not found' };
-  }
+  if (!product) return { status: 'NOT_FOUND', message: 'Product not found' };
+  
   return product;
 };
 
