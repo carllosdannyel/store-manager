@@ -96,11 +96,24 @@ describe("Testes de unidade na camada Service", function () {
     });
 
     it("Verifica se retorna erro ao atualizar um id inexistente", async function () {
-      const resolves = { status: 'NOT_FOUND', message: 'Product not found' };
+      const resolves = { status: "NOT_FOUND", message: "Product not found" };
       sinon.stub(productModel, "updateProduct").resolves(undefined);
 
       const id = 999;
       const name = "Pc Gamer";
+
+      const { status, message } = await productService.updateProduct(id, name);
+
+      expect(status).to.equal(resolves.status);
+      expect(message).to.equal(resolves.message);
+    });
+
+    it("Verifica se retorna erro ao atualizar com name inexistente", async function () {
+      const resolves = { type: "BAD_REQUEST", message: '"name" is required' };
+      sinon.stub(productModel, "updateProduct").resolves(resolves);
+
+      const id = 1;
+      const name = "";
 
       const { status, message } = await productService.updateProduct(id, name);
 

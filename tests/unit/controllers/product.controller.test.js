@@ -108,7 +108,7 @@ describe("Testes de unidade na camada Controller", function () {
 
   describe("Testes na atualização de produtos", function () {
     it("verifica se atualiza um produto com sucesso", async function () {
-      const req = { params: 1, body: "Pc Gamer" };
+      const req = { params: 1, body: { name: "Pc Gamer" } };
       const res = {};
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
@@ -123,7 +123,7 @@ describe("Testes de unidade na camada Controller", function () {
       expect(res.json).to.have.been.calledWith({ id: 1, name: "Pc Gamer" });
     });
 
-    it("verifica se Product not found com o produto inexistente", async function () {
+    it("verifica se retorna 'Product not' found com o produto inexistente", async function () {
       const req = { params: 999, body: "Pc Gamer" };
       const res = {};
       res.status = sinon.stub().returns(res);
@@ -138,6 +138,24 @@ describe("Testes de unidade na camada Controller", function () {
       expect(res.status).to.have.been.calledWith(404);
       expect(res.json).to.have.been.calledWith({
         message: "Product not found",
+      });
+    });
+
+    it("Verifica se retorna erro ao atualizar com name inexistente", async function () {
+      const req = { params: 1, body: { name: "" } };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const result = { type: "NOT_FOUND", message: '"name" is required' };
+
+      sinon.stub(productService, "updateProduct").resolves(result);
+
+      await productController.updateProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({
+        message: '"name" is required',
       });
     });
 
