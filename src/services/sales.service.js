@@ -7,11 +7,10 @@ const getAllSales = async () => {
 
 const getSalesById = async (id) => {
   const sales = await salesModel.getSalesById(id);
-  console.log('camada de service', sales);
-  if (sales.length === 0) {
-    return { type: 'NOT_FOUND', message: 'Sale not found' };
+  if (!sales) {
+    return { status: 'NOT_FOUND', message: 'Sale not found' };
   }
-  return { type: null, message: sales };
+  return { status: null, message: sales };
 };
 
 module.exports = {

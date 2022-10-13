@@ -117,11 +117,11 @@
     "colId": "c89cf2bb-d735-4aa2-80cc-696e287d9a7d",
     "containerId": "",
     "name": "/sales - busca as vendas pelo id",
-    "url": "http://localhost:3333/sales/3",
+    "url": "http://localhost:3333/sales/1",
     "method": "GET",
     "sortNum": 60000,
     "created": "2022-10-12T06:45:18.731Z",
-    "modified": "2022-10-12T06:46:46.897Z",
+    "modified": "2022-10-13T10:38:14.462Z",
     "headers": [
       {
         "name": "Accept",
@@ -135,6 +135,36 @@
       }
     ],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f61fc530-6bea-4074-8566-235d3ae3f666",
+    "colId": "c89cf2bb-d735-4aa2-80cc-696e287d9a7d",
+    "containerId": "",
+    "name": "/products/:id - atualiza um produto",
+    "url": "http://localhost:3333/products/1",
+    "method": "PUT",
+    "sortNum": 70000,
+    "created": "2022-10-13T07:48:08.486Z",
+    "modified": "2022-10-13T13:13:50.335Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"sanduiche com requeijao\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

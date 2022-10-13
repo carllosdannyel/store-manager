@@ -86,20 +86,58 @@ describe("Testes de unidade na camada Controller", function () {
     });
 
     it("Testa a validação do campo name vazio", async function () {
-      const req = { body: { name: '' } };
+      const req = { body: { name: "" } };
       const res = {};
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
 
       sinon
         .stub(productService, "createProduct")
-        .resolves({ type: 'BAD_REQUEST', message: '"name" is required' });
+        .resolves({ type: "BAD_REQUEST", message: '"name" is required' });
 
       await productController.createProduct(req, res);
 
       expect(res.status).to.have.been.calledWith(400);
       expect(res.json).to.have.been.calledWith({
         message: '"name" is required',
+      });
+    });
+
+    beforeEach(sinon.restore);
+  });
+
+  describe("Testes na atualização de produtos", function () {
+    it("verifica se atualiza um produto com sucesso", async function () {
+      const req = { params: 1, body: "Pc Gamer" };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon
+        .stub(productService, "updateProduct")
+        .resolves({ id: 1, name: "Pc Gamer" });
+
+      await productController.updateProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith({ id: 1, name: "Pc Gamer" });
+    });
+
+    it("verifica se Product not found com o produto inexistente", async function () {
+      const req = { params: 999, body: "Pc Gamer" };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const result = { status: "NOT_FOUND", message: "Product not found" };
+
+      sinon.stub(productService, "updateProduct").resolves(result);
+
+      await productController.updateProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({
+        message: "Product not found",
       });
     });
 

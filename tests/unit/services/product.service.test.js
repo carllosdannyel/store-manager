@@ -55,26 +55,58 @@ describe("Testes de unidade na camada Service", function () {
     it("Testa a validação do campo name vazio", async function () {
       sinon
         .stub(productModel, "createProduct")
-        .resolves({ type: 'BAD_REQUEST', message: '"name" is required' });
+        .resolves({ type: "BAD_REQUEST", message: '"name" is required' });
 
       const productName = "";
       const { type, message } = await productService.createProduct(productName);
 
-      expect(type).to.be.equal('BAD_REQUEST')
-      expect(message).to.be.equal('"name" is required')
-    });   
+      expect(type).to.be.equal("BAD_REQUEST");
+      expect(message).to.be.equal('"name" is required');
+    });
 
     it("Testa a validação do campo name com menos de 5 caracteres", async function () {
-      sinon
-        .stub(productModel, "createProduct")
-        .resolves({ type: 'UNPROCESSABLE_ENTITY', message: '"name" length must be at least 5 characters long' });
+      sinon.stub(productModel, "createProduct").resolves({
+        type: "UNPROCESSABLE_ENTITY",
+        message: '"name" length must be at least 5 characters long',
+      });
 
       const productName = "abcd";
       const { type, message } = await productService.createProduct(productName);
 
-      expect(type).to.be.equal('UNPROCESSABLE_ENTITY')
-      expect(message).to.be.equal('"name" length must be at least 5 characters long')
-    });      
+      expect(type).to.be.equal("UNPROCESSABLE_ENTITY");
+      expect(message).to.be.equal(
+        '"name" length must be at least 5 characters long'
+      );
+    });
+
+    afterEach(sinon.restore);
+  });
+
+  describe("Teste na atualização de produtos", function () {
+    it("Verifica se atualiza um produto com sucesso", async function () {
+      const resolves = { id: 1, name: "Pc Gamer" };
+      sinon.stub(productModel, "updateProduct").resolves(resolves);
+
+      const id = 1;
+      const name = "Pc Gamer";
+
+      const result = await productService.updateProduct(id, name);
+
+      expect(result).to.be.deep.equal(resolves);
+    });
+
+    it("Verifica se retorna erro ao atualizar um id inexistente", async function () {
+      const resolves = { status: 'NOT_FOUND', message: 'Product not found' };
+      sinon.stub(productModel, "updateProduct").resolves(undefined);
+
+      const id = 999;
+      const name = "Pc Gamer";
+
+      const { status, message } = await productService.updateProduct(id, name);
+
+      expect(status).to.equal(resolves.status);
+      expect(message).to.equal(resolves.message);
+    });
 
     afterEach(sinon.restore);
   });
