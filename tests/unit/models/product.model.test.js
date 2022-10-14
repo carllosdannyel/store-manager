@@ -83,19 +83,19 @@ describe("Testes de unidade na camada Model", function () {
     it("Tentando remover um produto existente", async function () {
       sinon.stub(connection, "execute").resolves([productsFromDB[0]]);
 
-      const id = 1;
+      const id = 999;
       const result = await productModel.deleteProductById(id);
 
       expect(result).to.be.equal(null);
     });
 
     it("Tentando remover um produto inexistente", async function () {
-      sinon.stub(connection, "execute").resolves([[{ affectedRows: 1 }]]);
+      sinon.stub(connection, "execute").resolves([[{ affectedRows: 0 }]]);
 
-      const id = 999;
+      const id = 1;
       const [result] = await productModel.deleteProductById(id);
 
-      expect(result.affectedRows).to.be.equal(1);
+      expect(result.affectedRows).to.be.equal(0);
     });
 
     afterEach(sinon.restore);

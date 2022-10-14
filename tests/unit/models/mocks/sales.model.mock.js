@@ -32,7 +32,13 @@ const salesById = [
   },
 ];
 
+const salesFromDB = [
+  { id: 1, date: "2022-10-14 10:08:56" },
+  { id: 2, date: "2022-10-14 10:08:56" },
+];
+
 module.exports = {
   sales,
   salesById,
+  salesFromDB
 };

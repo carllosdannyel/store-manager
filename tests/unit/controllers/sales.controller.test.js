@@ -60,4 +60,40 @@ describe("Testes de unidade na camada Controller", function () {
 
     beforeEach(sinon.restore);
   });
+
+  describe("Testes na tentativa de deletar uma venda", function () {
+    it("Tentando deletar uma venda existente", async function () {
+      const req = { params: { id: 1 } };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const result = { status: null, message: null };
+
+      sinon.stub(salesService, "deleteSalesById").resolves(result);
+
+      await salesController.deleteSalesById(req, res);
+
+      expect(res.status).to.have.been.calledWith(204);
+      expect(res.json).to.have.been.calledWith(null);
+    });
+
+    it("Tentando deletar uma venda inexistente", async function () {
+      const req = { params: { id: 999 } };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const result = { status: "NOT_FOUND", message: "Sale not found" };
+
+      sinon.stub(salesService, "deleteSalesById").resolves(result);
+
+      await salesController.deleteSalesById(req, res);
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({ message: result.message });
+    });
+
+    beforeEach(sinon.restore);
+  });
 });
