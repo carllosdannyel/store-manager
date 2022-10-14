@@ -142,11 +142,11 @@
     "colId": "c89cf2bb-d735-4aa2-80cc-696e287d9a7d",
     "containerId": "",
     "name": "/products/:id - atualiza um produto",
-    "url": "http://localhost:3333/products/1",
+    "url": "http://localhost:3333/products/4",
     "method": "PUT",
     "sortNum": 70000,
     "created": "2022-10-13T07:48:08.486Z",
-    "modified": "2022-10-13T13:13:50.335Z",
+    "modified": "2022-10-13T15:18:42.065Z",
     "headers": [
       {
         "name": "Accept",
@@ -165,6 +165,56 @@
       "raw": "{\n  \"name\": \"sanduiche com requeijao\"\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "bc7d76b8-892a-4f91-9e1a-b974da75d8f8",
+    "colId": "c89cf2bb-d735-4aa2-80cc-696e287d9a7d",
+    "containerId": "",
+    "name": "/products/:id deleta uma venda",
+    "url": "http://localhost:3333/products/2",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-10-13T17:04:07.021Z",
+    "modified": "2022-10-14T07:18:15.643Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2a409642-406f-4603-bb59-cea4b649c88b",
+    "colId": "c89cf2bb-d735-4aa2-80cc-696e287d9a7d",
+    "containerId": "",
+    "name": "/sales - busca as vendas pelo id Copy",
+    "url": "http://localhost:3333/sales/1",
+    "method": "GET",
+    "sortNum": 65000,
+    "created": "2022-10-13T18:13:39.660Z",
+    "modified": "2022-10-13T18:13:39.660Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
     "tests": []
   }
 ]
