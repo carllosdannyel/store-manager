@@ -172,11 +172,11 @@
     "colId": "c89cf2bb-d735-4aa2-80cc-696e287d9a7d",
     "containerId": "",
     "name": "/products/:id deleta uma venda",
-    "url": "http://localhost:3333/products/2",
+    "url": "http://localhost:3333/products/1",
     "method": "DELETE",
     "sortNum": 80000,
     "created": "2022-10-13T17:04:07.021Z",
-    "modified": "2022-10-14T07:18:15.643Z",
+    "modified": "2022-10-14T07:52:13.962Z",
     "headers": [
       {
         "name": "Accept",

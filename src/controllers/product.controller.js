@@ -26,7 +26,10 @@ const createProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
-  const { params: { id }, body: { name } } = req;
+  const {
+    params: { id },
+    body: { name },
+  } = req;
   const product = await productService.updateProduct(+id, name);
   if (product.type) {
     const { type, message } = product;
@@ -40,14 +43,13 @@ const updateProduct = async (req, res) => {
   res.status(200).json(product);
 };
 
-const deleteProduct = async (req, res) => {
+const deleteProductById = async (req, res) => {
   const { id } = req.params;
-  const { status, message } = await productService.deleteProduct(+id);
+  const { status, message } = await productService.deleteProductById(+id);
   if (status || message) {
     return res.status(mapError(status)).json({ message });
   }
-
-  res.status(204).json(message);
+  return res.status(204).json(message);
 };
 
 module.exports = {
@@ -55,5 +57,5 @@ module.exports = {
   getProductById,
   createProduct,
   updateProduct,
-  deleteProduct,
+  deleteProductById,
 };

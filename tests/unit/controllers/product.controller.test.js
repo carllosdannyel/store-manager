@@ -161,4 +161,40 @@ describe("Testes de unidade na camada Controller", function () {
 
     beforeEach(sinon.restore);
   });
+
+  describe("Testes na tentativa de deletar um produto", function () {
+    it("Tentando deletar um produto existente", async function () {
+      const req = { params: { id: 1 } };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const result = { status: null, message: null };
+
+      sinon.stub(productService, "deleteProductById").resolves(result);
+
+      await productController.deleteProductById(req, res);
+
+      expect(res.status).to.have.been.calledWith(204);
+      expect(res.json).to.have.been.calledWith(null);
+    });
+
+    it("Tentando deletar um produto inexistente", async function () {
+      const req = { params: { id: 999 } };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const result = { status: "NOT_FOUND", message: "Product not found" };
+
+      sinon.stub(productService, "deleteProductById").resolves(result);
+
+      await productController.deleteProductById(req, res);
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({ message: result.message });
+    });
+
+    beforeEach(sinon.restore);
+  });
 });

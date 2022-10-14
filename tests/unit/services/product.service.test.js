@@ -123,4 +123,31 @@ describe("Testes de unidade na camada Service", function () {
 
     afterEach(sinon.restore);
   });
+
+  describe("Testes na tentativa de deletar um produto", function () {
+    it("Tentando deletar um produto existente", async function () {
+      sinon
+        .stub(productModel, "deleteProductById")
+        .resolves([[productsFromDB[0]]]);
+
+      const id = 1;
+      const result = await productService.deleteProductById(id);
+
+      expect(result).to.be.deep.equal({ status: null, message: null });
+    });
+
+    it("Tentando deletar um produto existente", async function () {
+      sinon.stub(productModel, "deleteProductById").resolves(null);
+
+      const id = 999;
+      const result = await productService.deleteProductById(id);
+
+      expect(result).to.be.deep.equal({
+        status: "NOT_FOUND",
+        message: "Product not found",
+      });
+    });
+
+    afterEach(sinon.restore);
+  });
 });
