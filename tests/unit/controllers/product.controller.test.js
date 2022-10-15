@@ -197,4 +197,36 @@ describe("Testes de unidade na camada Controller", function () {
 
     beforeEach(sinon.restore);
   });
+
+    describe("Testes na busca de produtos", function () {
+    it("verifica se retorna todos os produtos com a busca vazia", async function () {
+      const req = { query: { q: "" } };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(productService, "getProductByName").resolves(productsFromDB);
+
+      await productController.getProductByName(req, res);
+
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(productsFromDB);
+    });
+
+    it("verifica se retona o produto especifico Martelo de Thor", async function () {
+      const req = { query: { q: "Martelo" } };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(productService, "getProductByName").resolves(productsFromDB);
+
+      await productController.getProductByName(req, res);
+
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(productsFromDB);
+    });
+
+    beforeEach(sinon.restore);
+  });
 });

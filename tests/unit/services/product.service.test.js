@@ -150,4 +150,28 @@ describe("Testes de unidade na camada Service", function () {
 
     afterEach(sinon.restore);
   });
+
+    describe("Testes na busca de um produto por nome", function () {
+    it("Verifica se retorna todos os produtos com a busca vazia", async function () {
+      sinon
+        .stub(productModel, "getProductByName")
+        .resolves(productsFromDB);
+
+      const name = "";
+      const result = await productService.getProductByName(name);
+
+      expect(result).to.be.deep.equal(productsFromDB);
+    });
+
+    it("verifica se retona o produto especifico Martelo de Thor", async function () {
+      sinon.stub(productModel, "getProductByName").resolves(productsFromDB[0]);
+
+      const name = "Martelo";
+      const result = await productService.getProductByName(name);
+
+      expect(result).to.be.deep.equal(productsFromDB[0]);
+    });
+
+    afterEach(sinon.restore);
+  });
 });

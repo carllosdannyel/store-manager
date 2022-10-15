@@ -100,4 +100,28 @@ describe("Testes de unidade na camada Model", function () {
 
     afterEach(sinon.restore);
   });
+
+    describe("Busncando produtos atraves da query de busca", function () {
+    it("verifica se retorna todos os produtos ao nao passar um valor", async function () {
+      sinon.stub(connection, "execute").resolves([productsFromDB]);
+
+      const name = "";
+
+      const result = await productModel.getProductByName(name);
+
+      expect(result).to.be.deep.equal(productsFromDB);
+    });
+
+    it("verifica se retona o produto especifico Martelo de Thor", async function () {
+      sinon.stub(connection, "execute").resolves([productsFromDB[0]]);
+
+      const name = "Martelo";
+
+      const result = await productModel.getProductByName(name);
+
+      expect(result).to.be.deep.equal(productsFromDB[0]);
+    });
+
+    afterEach(sinon.restore);
+  });
 });
