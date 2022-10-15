@@ -44,10 +44,16 @@ const deleteProductById = async (id) => {
   return { status: null, message: null };
 };
 
+const getProductByName = async (name) => {
+  const products = await productModel.getProductByName(name);
+  return products;
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   createProduct,
   updateProduct,
   deleteProductById,
+  getProductByName,
 };
