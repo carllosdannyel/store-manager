@@ -42,15 +42,15 @@ const insertSales = async (req, res) => {
 
 const updateSales = async (req, res) => {
   const { id } = req.params;
-  const sales = await salesProductsService.updateSales(id, req.body);
-  console.log(sales);
 
-    if (sales.type) {
-    const { type, message } = sales;
+  const itemsUpdated = await salesProductsService.updateSales(id, req.body);
+
+  if (itemsUpdated.type) {
+    const { type, message } = itemsUpdated;
     return res.status(mapError(type)).json({ message });
   }
 
-  res.status(200).json(sales);
+  res.status(200).json(itemsUpdated);
 };
 
 module.exports = {
