@@ -62,11 +62,11 @@
     "colId": "c89cf2bb-d735-4aa2-80cc-696e287d9a7d",
     "containerId": "",
     "name": "/sales - adiciona novas vendas",
-    "url": "http://localhost:3333/sales",
-    "method": "POST",
+    "url": "http://localhost:3333/sales/1",
+    "method": "PUT",
     "sortNum": 40000,
     "created": "2022-10-12T03:55:34.908Z",
-    "modified": "2022-10-16T19:07:09.009Z",
+    "modified": "2022-10-17T10:14:00.955Z",
     "headers": [
       {
         "name": "Accept",
@@ -82,7 +82,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "[\n  {\n    \"productId\": 3,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 1\n  }\n]",
+      "raw": "[\n  {\n    \"productId\": 3,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 5,\n    \"quantity\": 0\n  }\n]",
       "form": []
     },
     "tests": []

@@ -4,12 +4,14 @@ const salesProductsService = require('../services/sales.product.service');
 
 const getAllSales = async (_req, res) => {
   const sales = await salesService.getAllSales();
+  
   res.status(200).json(sales);
 };
 
 const getSalesById = async (req, res) => {
   const { id } = req.params;
   const { status, message } = await salesService.getSalesById(+id);
+
   if (status) {
     return res.status(mapError(status)).json({ message });
   }
@@ -19,6 +21,7 @@ const getSalesById = async (req, res) => {
 const deleteSalesById = async (req, res) => {
   const { id } = req.params;
   const { status, message } = await salesService.deleteSalesById(+id);
+
   if (status || message) {
     return res.status(mapError(status)).json({ message });
   }
@@ -28,11 +31,26 @@ const deleteSalesById = async (req, res) => {
 
 const insertSales = async (req, res) => {
   const sales = await salesProductsService.insertSales(req.body);
+
   if (sales.type) {
     const { type, message } = sales;
     return res.status(mapError(type)).json({ message });
   }
-  return res.status(201).json(sales);
+  
+  res.status(201).json(sales);
+};
+
+const updateSales = async (req, res) => {
+  const { id } = req.params;
+  const sales = await salesProductsService.updateSales(id, req.body);
+  console.log(sales);
+
+    if (sales.type) {
+    const { type, message } = sales;
+    return res.status(mapError(type)).json({ message });
+  }
+
+  res.status(200).json(sales);
 };
 
 module.exports = {
@@ -40,4 +58,5 @@ module.exports = {
   getSalesById,
   deleteSalesById,
   insertSales,
+  updateSales,
 };

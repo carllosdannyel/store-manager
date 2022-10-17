@@ -5,6 +5,11 @@ const getProductById = async (productId) => {
   return result;
 };
 
+const getSaleById = async (saleId) => {
+  const [[result]] = await connection.execute('SELECT * FROM sales WHERE id = ?', [saleId]);
+  return result;
+};
+
 const insertIntoSales = async () => connection.execute('INSERT INTO sales (date) VALUES (NOW())');
 
 const insertIntoSalesProducts = async (saleId, sale) => connection
@@ -14,17 +19,25 @@ const insertIntoSalesProducts = async (saleId, sale) => connection
 const insertSales = async (body) => {
   const products = await Promise.all(body.map(({ productId }) => getProductById(productId)));
 
-  if (products.includes(undefined)) {
-    return { type: 'NOT_FOUND', message: 'Product not found' };
-  }
+  if (products.includes(undefined)) return undefined;
   
   const [{ insertId }] = await insertIntoSales();
 
   await Promise.all(body.map((sale) => insertIntoSalesProducts(insertId, sale)));
 
-  return { id: insertId, itemsSold: body };
+  return insertId;
 };
 
+const updateSales = async (saleId, { productId, quantity }) => connection.execute(
+  'UPDATE sales_products SET product_id = ?, quantity = ? WHERE sale_id = ? AND product_id = ?',
+  [productId, quantity, saleId, productId],
+);
+
 module.exports = {
+  getProductById,
+  getSaleById,
+  insertIntoSales,
+  insertIntoSalesProducts,
   insertSales,
+  updateSales,
 };
