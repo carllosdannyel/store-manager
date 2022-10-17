@@ -8,7 +8,7 @@ const insertSales = async (body) => {
   
   const [{ insertId }] = await salesProductModel.insertIntoSales();
 
-  await Promise.all(body.map((sale) => salesProductModel.insertIntoSalesProducts(insertId, sale)));
+  await body.forEach((sale) => salesProductModel.insertIntoSalesProducts(insertId, sale));
 
   return { id: insertId, itemsSold: body };
 };
@@ -22,7 +22,8 @@ const updateSales = async (saleId, body) => {
   
   if (products.includes(undefined)) return { type: 'NOT_FOUND', message: 'Product not found' };
 
-  await Promise.all(body.map((sale) => salesProductModel.updateSales(saleId, sale)));
+  await body.forEach((sale) => salesProductModel.updateSales(saleId, sale));
+
   return { saleId, itemsUpdated: body };
 };
 
